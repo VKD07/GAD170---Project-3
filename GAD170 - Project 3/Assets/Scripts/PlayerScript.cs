@@ -6,16 +6,16 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     [Header("Player Movement")]
-    [SerializeField] float movementSpeed = 2f;
-    [SerializeField] float rollSpeed = 10f;
+    [SerializeField] float walkSpeed = 2f;
+    [SerializeField] float runSpeed = 4f;
     public float playerSpeed;
 
     //Player Components
-    [SerializeField] Animator animator;
+    Animator animator;
 
     void Start()
     {
-       
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -23,23 +23,27 @@ public class PlayerScript : MonoBehaviour
         PlayerMovement();
         PlayerRotation();
     }
-
     private void PlayerMovement()
     {
         //Player Walk
         float verticalAxis = Input.GetAxis("Vertical");
         float horizontalAxis = Input.GetAxis("Horizontal");
 
-        playerSpeed = movementSpeed;
 
         Vector3 playerPos = new Vector3(horizontalAxis, 0f, verticalAxis) * playerSpeed * Time.deltaTime;
 
         transform.position += playerPos;
 
+        if(transform.position.y < 0)
+        {
+            transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+        }
+
         print(playerPos);
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S))
         {
+            playerSpeed = walkSpeed;
             animator.SetBool("IsWalking", true);
         }
         else
@@ -47,13 +51,17 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool("IsWalking", false);
         }
 
-        //roll
-        if (Input.GetKey(KeyCode.Space))
+        //Sprinting
+        if (Input.GetKey(KeyCode.LeftShift) && animator.GetBool("IsWalking") == true)
         {
-            animator.SetTrigger("Roll");
-          
+            animator.SetBool("IsWalking", false);
+            animator.SetBool("Run", true);
+            playerSpeed = runSpeed;
         }
-
+        else
+        {
+            animator.SetBool("Run", false);
+        }
     }
 
     private void PlayerRotation()
@@ -62,7 +70,7 @@ public class PlayerScript : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(Vector3.right);
         }
-        else if(Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             transform.rotation = Quaternion.LookRotation(Vector3.left);
         }
@@ -74,7 +82,6 @@ public class PlayerScript : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(Vector3.back);
         }
-
     }
-
+   
 }
