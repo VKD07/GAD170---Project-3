@@ -14,8 +14,11 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float runSpeed = 4f;
     public float playerSpeed;
 
+    
+
     //Player Components
     Animator animator;
+
 
     void Start()
     {

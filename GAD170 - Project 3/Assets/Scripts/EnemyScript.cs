@@ -47,7 +47,10 @@ public class EnemyScript : MonoBehaviour
 
     private void DamagePlayer()
     {
-        player.GetComponent<PlayerScript>().ReducePlayerHealth(enemyDamage);
+        if (player.GetComponent<SwordsMan>().IsShieldActivated() == false)
+        {
+            player.GetComponent<PlayerScript>().ReducePlayerHealth(enemyDamage);
+        }
     }
 
     private void DeathHandler()

@@ -10,6 +10,7 @@ public class SwordsMan : MonoBehaviour
     Animator animator;
     Collider collider;
     bool isAttacking = false;
+    bool shieldActive = false;
 
     void Start()
     {
@@ -38,14 +39,24 @@ public class SwordsMan : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Mouse1))
         {
+            shieldActive = true;
             isAttacking=false;
             animator.SetBool("Shield", true);
         }
         else
         {
+            shieldActive = false;
             animator.SetBool("Shield", false);
         }
     }
+
+    //getter
+
+    public bool IsShieldActivated()
+    {
+        return shieldActive;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")

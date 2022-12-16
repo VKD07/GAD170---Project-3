@@ -1757,7 +1757,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7669952387610949343}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -1776,9 +1776,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 100
-  enemySpeed: 0.3
+  enemyDamage: 10
+  enemySpeed: 0.2
   attackDistance: 1
-  playerPosition: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &7727459065652488907
 GameObject:
   m_ObjectHideFlags: 0
