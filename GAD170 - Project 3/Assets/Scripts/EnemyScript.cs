@@ -56,6 +56,7 @@ public class EnemyScript : MonoBehaviour
         {
             animator.SetTrigger("Death");
             enemySpeed = 0;
+            transform.rotation = Quaternion.identity;  
             Destroy(this.gameObject, 4f);
         }
     }
