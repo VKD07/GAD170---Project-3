@@ -5,27 +5,27 @@ using UnityEngine;
 
 public class SwordsMan : MonoBehaviour
 {
+    [SerializeField] int swordDamage = 50;
+
     Animator animator;
     Collider collider;
     bool isAttacking = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         AttackBlock();
-        print(collider);
-        print("Player is attacking: " + isAttacking);
     }
 
     private void AttackEnemy()
     {
         if(isAttacking == true && collider != null)
         {
-            Destroy(collider.gameObject);
+            collider.GetComponent<EnemyScript>().ReduceHealth(swordDamage);
         }   
     }
 
@@ -46,7 +46,6 @@ public class SwordsMan : MonoBehaviour
             animator.SetBool("Shield", false);
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")

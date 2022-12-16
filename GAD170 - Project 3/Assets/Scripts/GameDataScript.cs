@@ -22,12 +22,14 @@ public class GameDataScript : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        selection = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SelectionScript>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        selection = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SelectionScript>();
+
         if (selection != null)
         {
 

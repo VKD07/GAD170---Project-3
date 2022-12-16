@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
+    [Header("Player Stats")]
+    [SerializeField] int playerHealth = 100;
+
     [Header("Player Movement")]
     [SerializeField] float walkSpeed = 2f;
     [SerializeField] float runSpeed = 4f;
@@ -22,13 +26,15 @@ public class PlayerScript : MonoBehaviour
     {
         PlayerMovement();
         PlayerRotation();
+        DeathHandler();
+        print(playerHealth);
     }
+
     private void PlayerMovement()
     {
         //Player Walk
         float verticalAxis = Input.GetAxis("Vertical");
         float horizontalAxis = Input.GetAxis("Horizontal");
-
 
         Vector3 playerPos = new Vector3(horizontalAxis, 0f, verticalAxis) * playerSpeed * Time.deltaTime;
 
@@ -38,8 +44,6 @@ public class PlayerScript : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
         }
-
-        print(playerPos);
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S))
         {
@@ -82,6 +86,20 @@ public class PlayerScript : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(Vector3.back);
         }
+    }
+
+    private void DeathHandler()
+    {
+        if(playerHealth <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    //Setter Function
+    public void ReducePlayerHealth(int zombieDamage)
+    {
+        playerHealth -= zombieDamage;
     }
    
 }
