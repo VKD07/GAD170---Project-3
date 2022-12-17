@@ -8,19 +8,26 @@ public class ArcherScript : MonoBehaviour
     [SerializeField] Transform arrowSpawner;
     [SerializeField] GameObject arrow;
     [SerializeField] float arrowSpeed;
-   
 
     Animator animator;
+
+    ArrowScript arrowScript;   
+   
+
 
     void Start()
     {
         animator = GetComponent<Animator>();
+    
     }
-
-    // Update is called once per frame
     void Update()
     {
+        if (arrowScript != null)
+        {
+            arrowScript = GameObject.FindGameObjectWithTag("Arrow").GetComponent<ArrowScript>();
+        }
         Attack();
+       
     }
 
     private void Attack()

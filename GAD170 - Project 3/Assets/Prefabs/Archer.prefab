@@ -841,7 +841,7 @@ GameObject:
   - component: {fileID: 4707792623550707854}
   - component: {fileID: 1170907158914620208}
   - component: {fileID: 1170907158914620223}
-  - component: {fileID: 5632348769224099852}
+  - component: {fileID: 321502908}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Player
@@ -856,7 +856,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089261254496237646}
-  m_LocalRotation: {x: -0, y: 0.99970645, z: -0, w: 0.024229608}
+  m_LocalRotation: {x: 0, y: 0.99970645, z: 0, w: 0.024231602}
   m_LocalPosition: {x: 0.6352183, y: 0.020000458, z: -1.5694275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -921,8 +921,9 @@ MonoBehaviour:
   arrowSpawner: {fileID: 1170907158804164193}
   arrow: {fileID: 1877330888121697209, guid: 59e8d456851f01c4eae0a8f2697784e7, type: 3}
   arrowSpeed: 10
---- !u!64 &5632348769224099852
-MeshCollider:
+  PowerUpAdditionalDamage: 50
+--- !u!136 &321502908
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -931,10 +932,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Radius: 0.29
+  m_Height: 1.87
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.86, z: 0}
 --- !u!1 &2184680276343991402
 GameObject:
   m_ObjectHideFlags: 0

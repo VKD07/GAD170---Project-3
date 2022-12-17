@@ -11,15 +11,20 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] float attackDistance = 3f;
     [SerializeField] float scorePerKill = 100f;
 
+    [Header("Droppable Items")]
+    [SerializeField] GameObject[] droppableItems;
+    bool ifItemDropped = false;
+
     bool scoreAdded = false;
     public ScoreHandler scoreHandler;
     GameObject player;
     Animator animator;
+    bool ifSubscribed = false;
+
 
     void Start()
     {
         animator = GetComponent<Animator>();
-      
     }
 
     // Update is called once per frame
@@ -27,6 +32,13 @@ public class EnemyScript : MonoBehaviour
     {
         scoreHandler = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreHandler>();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        if (ifSubscribed == false)
+        {
+            ifSubscribed = true;
+            player.GetComponent<PlayerScript>().damagePowerUpEvent += DamageHealth;
+        }
+
         enemyMovement();
         Attack();
         DeathHandler();
@@ -41,7 +53,7 @@ public class EnemyScript : MonoBehaviour
     {
         float DistanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        if(DistanceToPlayer <= attackDistance)
+        if (DistanceToPlayer <= attackDistance)
         {
             animator.SetTrigger("Attack");
         }
@@ -57,18 +69,34 @@ public class EnemyScript : MonoBehaviour
 
     private void DeathHandler()
     {
-        if(enemyHealth == 0)
+        if (enemyHealth <= 0)
         {
             if (scoreAdded == false)
             {
                 scoreAdded = true;
                 scoreHandler.setScore((int)scorePerKill);
             }
-
             animator.SetTrigger("Death");
             enemySpeed = 0;
-            transform.rotation = Quaternion.identity;  
+            transform.rotation = Quaternion.identity;
+
+            if (ifItemDropped == false)
+            {
+                ifItemDropped = true;
+                DropAnItem();
+            }
+
             Destroy(this.gameObject, 4f);
+        }
+    }
+
+    private void DropAnItem()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, droppableItems.Length);
+
+        if (droppableItems[randomIndex] != null)
+        {
+            Instantiate(droppableItems[randomIndex], transform.position + Vector3.one, Quaternion.identity);
         }
     }
 
@@ -77,11 +105,14 @@ public class EnemyScript : MonoBehaviour
     {
         enemyHealth -= damage;
     }
-
     public int EnemyHealth()
     {
         return enemyHealth;
     }
 
-
+    void DamageHealth()
+    {
+        enemyHealth /= 2;
+    }
 }
+

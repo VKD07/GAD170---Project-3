@@ -14,10 +14,15 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float runSpeed = 4f;
     public float playerSpeed;
 
-    
+
 
     //Player Components
     Animator animator;
+
+    //events and delegates
+    public delegate void DamagePowerUpDelegate();
+    public DamagePowerUpDelegate damagePowerUpEvent;
+ 
 
 
     void Start()
@@ -29,8 +34,6 @@ public class PlayerScript : MonoBehaviour
     {
         PlayerMovement();
         PlayerRotation();
-        DeathHandler();
-        print(playerHealth);
     }
 
     private void PlayerMovement()
@@ -105,11 +108,32 @@ public class PlayerScript : MonoBehaviour
         playerHealth -= zombieDamage;
     }
 
+    public void AddPlayerHealth(int health)
+    {
+        playerHealth += health;
+    }
+
+    public void SetPlayerHealth(int health)
+    {
+        playerHealth = health;
+    }
+
     //Getter function
 
     public int PlayerHealth()
     {
         return playerHealth;
     }
-   
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "DamagePowerUp")
+        {
+            damagePowerUpEvent();
+            Destroy(other.gameObject);
+        }
+    }
+
 }

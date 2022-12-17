@@ -5,12 +5,13 @@ using UnityEngine;
 public class ArrowScript : MonoBehaviour
 {
     [SerializeField] int arrowDamage = 50;
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyScript>().ReduceHealth(arrowDamage);
-            Destroy(gameObject);
+                other.GetComponent<EnemyScript>().ReduceHealth(arrowDamage);
+                Destroy(gameObject);
         }
     }
 }

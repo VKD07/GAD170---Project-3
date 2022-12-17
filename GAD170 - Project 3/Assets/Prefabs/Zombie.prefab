@@ -1894,7 +1894,16 @@ MonoBehaviour:
   enemyDamage: 10
   enemySpeed: 0.4
   attackDistance: 2
-  player: {fileID: 0}
+  scorePerKill: 100
+  droppableItems:
+  - {fileID: 6033453200346671185, guid: 971feab0f2c6ea546bdc8abf3c649157, type: 3}
+  - {fileID: 6825434109298184738, guid: 6ba9913578f80674aab1ede020125fbe, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  scoreHandler: {fileID: 0}
 --- !u!1 &7727459065652488907
 GameObject:
   m_ObjectHideFlags: 0
