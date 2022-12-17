@@ -902,7 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131596a2587bf6d41abc8dc77d2ed1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 100
+  playerHealth: 10
   walkSpeed: 2
   runSpeed: 4
   playerSpeed: 0
@@ -921,7 +921,6 @@ MonoBehaviour:
   arrowSpawner: {fileID: 1170907158804164193}
   arrow: {fileID: 1877330888121697209, guid: 59e8d456851f01c4eae0a8f2697784e7, type: 3}
   arrowSpeed: 10
-  PowerUpAdditionalDamage: 50
 --- !u!136 &321502908
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -22,6 +22,9 @@ public class PlayerScript : MonoBehaviour
     //events and delegates
     public delegate void DamagePowerUpDelegate();
     public DamagePowerUpDelegate damagePowerUpEvent;
+
+    public delegate void DeathDelegate();
+    public DeathDelegate deathEvent;
  
 
 
@@ -34,6 +37,8 @@ public class PlayerScript : MonoBehaviour
     {
         PlayerMovement();
         PlayerRotation();
+        DeathHandler();
+        print("Player Health: " +playerHealth);
     }
 
     private void PlayerMovement()
@@ -98,8 +103,10 @@ public class PlayerScript : MonoBehaviour
     {
         if(playerHealth <= 0)
         {
-            SceneManager.LoadScene(0);
+            deathEvent();
+            Time.timeScale = 0;
         }
+    
     }
 
     //Setter Function

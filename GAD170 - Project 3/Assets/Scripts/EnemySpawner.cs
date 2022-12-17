@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
         {
             for (int i = 0; i < enemies.Length; i++)
             {
-                float randomDelayTime = UnityEngine.Random.Range(15, 25);
+                float randomDelayTime = UnityEngine.Random.Range(6, 20);
 
                 Instantiate(enemies[i], transform.position, Quaternion.identity);
 

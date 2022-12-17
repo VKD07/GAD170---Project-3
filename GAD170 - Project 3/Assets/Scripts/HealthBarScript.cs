@@ -10,8 +10,11 @@ public class HealthBarScript : MonoBehaviour
     [SerializeField] bool thisIsAPlayer;
     [SerializeField] PlayerScript playerScript;
 
+ 
+
     void Start()
     {
+
         if (enemyScript != null)
         {
             slider.value = enemyScript.EnemyHealth();
@@ -19,11 +22,17 @@ public class HealthBarScript : MonoBehaviour
         {
             playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
             slider.value = playerScript.PlayerHealth();
+            playerScript.deathEvent += DisableUI;
         }
     }
 
     // Update is called once per frame
     void Update()
+    {
+        SettingHealthBar();
+    }
+
+    private void SettingHealthBar()
     {
         if (enemyScript != null)
         {
@@ -33,5 +42,11 @@ public class HealthBarScript : MonoBehaviour
         {
             slider.value = playerScript.PlayerHealth();
         }
+    }
+    
+    public void DisableUI()
+    {
+        playerScript.deathEvent -= DisableUI;
+        this.gameObject.SetActive(false);
     }
 }
