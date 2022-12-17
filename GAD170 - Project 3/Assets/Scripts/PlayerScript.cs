@@ -104,5 +104,12 @@ public class PlayerScript : MonoBehaviour
     {
         playerHealth -= zombieDamage;
     }
+
+    //Getter function
+
+    public int PlayerHealth()
+    {
+        return playerHealth;
+    }
    
 }

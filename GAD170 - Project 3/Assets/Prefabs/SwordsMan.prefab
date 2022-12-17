@@ -669,6 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131596a2587bf6d41abc8dc77d2ed1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: 100
   walkSpeed: 2
   runSpeed: 4
   playerSpeed: 2
@@ -684,6 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9eeba6d8cca6e4dbc5aff4d6bfca8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordDamage: 50
 --- !u!135 &6085562235325051343
 SphereCollider:
   m_ObjectHideFlags: 0

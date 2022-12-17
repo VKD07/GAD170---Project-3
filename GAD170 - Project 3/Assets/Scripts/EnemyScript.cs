@@ -8,7 +8,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] int enemyHealth = 100;
     [SerializeField] int enemyDamage = 10;
     [SerializeField] float enemySpeed = 2f;
-    [SerializeField] float attackDistance = 2f;
+    [SerializeField] float attackDistance = 3f;
 
     public GameObject player;
     Animator animator;
@@ -30,8 +30,7 @@ public class EnemyScript : MonoBehaviour
     private void enemyMovement()
     {
         float enemySteps = enemySpeed * Time.deltaTime;
-        Vector3 stoppingDistance = player.transform.position - Vector3.one;
-        transform.position = Vector3.MoveTowards(transform.position, stoppingDistance, enemySteps);
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemySteps);
         transform.LookAt(player.transform.position);
     }
     private void Attack()
@@ -47,7 +46,7 @@ public class EnemyScript : MonoBehaviour
 
     private void DamagePlayer()
     {
-        if (player.GetComponent<SwordsMan>().IsShieldActivated() == false)
+        if (player.GetComponent<SwordsMan>() != null && player.GetComponent<SwordsMan>().IsShieldActivated() == false)
         {
             player.GetComponent<PlayerScript>().ReducePlayerHealth(enemyDamage);
         }
@@ -69,4 +68,11 @@ public class EnemyScript : MonoBehaviour
     {
         enemyHealth -= damage;
     }
+
+    public int EnemyHealth()
+    {
+        return enemyHealth;
+    }
+
+
 }
