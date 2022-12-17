@@ -841,6 +841,7 @@ GameObject:
   - component: {fileID: 4707792623550707854}
   - component: {fileID: 1170907158914620208}
   - component: {fileID: 1170907158914620223}
+  - component: {fileID: 5632348769224099852}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Player
@@ -901,6 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131596a2587bf6d41abc8dc77d2ed1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: 100
   walkSpeed: 2
   runSpeed: 4
   playerSpeed: 0
@@ -919,6 +921,20 @@ MonoBehaviour:
   arrowSpawner: {fileID: 1170907158804164193}
   arrow: {fileID: 1877330888121697209, guid: 59e8d456851f01c4eae0a8f2697784e7, type: 3}
   arrowSpeed: 10
+--- !u!64 &5632348769224099852
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089261254496237646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2184680276343991402
 GameObject:
   m_ObjectHideFlags: 0

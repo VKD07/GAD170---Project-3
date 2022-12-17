@@ -1153,7 +1153,7 @@ MonoBehaviour:
   enemyDamage: 15
   enemySpeed: 0.2
   attackDistance: 3
-  player: {fileID: 0}
+  ScorePerKill: 200
 --- !u!54 &91404205415474336
 Rigidbody:
   m_ObjectHideFlags: 0

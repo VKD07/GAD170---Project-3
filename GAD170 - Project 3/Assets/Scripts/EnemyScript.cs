@@ -9,19 +9,23 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] int enemyDamage = 10;
     [SerializeField] float enemySpeed = 2f;
     [SerializeField] float attackDistance = 3f;
+    [SerializeField] float scorePerKill = 100f;
 
-    public GameObject player;
+    bool scoreAdded = false;
+    public ScoreHandler scoreHandler;
+    GameObject player;
     Animator animator;
-    bool attackPlayer = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+      
     }
 
     // Update is called once per frame
     void Update()
     {
+        scoreHandler = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreHandler>();
         player = GameObject.FindGameObjectWithTag("Player");
         enemyMovement();
         Attack();
@@ -39,14 +43,13 @@ public class EnemyScript : MonoBehaviour
 
         if(DistanceToPlayer <= attackDistance)
         {
-            attackPlayer = true;
             animator.SetTrigger("Attack");
         }
     }
 
     private void DamagePlayer()
     {
-        if (player.GetComponent<SwordsMan>() != null && player.GetComponent<SwordsMan>().IsShieldActivated() == false)
+        if (player.GetComponent<SwordsMan>() != null && player.GetComponent<SwordsMan>().IsShieldActivated() == false || player.GetComponent<ArcherScript>() != null)
         {
             player.GetComponent<PlayerScript>().ReducePlayerHealth(enemyDamage);
         }
@@ -54,8 +57,14 @@ public class EnemyScript : MonoBehaviour
 
     private void DeathHandler()
     {
-        if(enemyHealth <= 0)
+        if(enemyHealth == 0)
         {
+            if (scoreAdded == false)
+            {
+                scoreAdded = true;
+                scoreHandler.setScore((int)scorePerKill);
+            }
+
             animator.SetTrigger("Death");
             enemySpeed = 0;
             transform.rotation = Quaternion.identity;  
