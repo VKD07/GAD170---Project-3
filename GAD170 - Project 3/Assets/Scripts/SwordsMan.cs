@@ -7,6 +7,9 @@ using UnityEngine;
 public class SwordsMan : MonoBehaviour
 {
     [SerializeField] int swordDamage = 50;
+    [SerializeField] GameObject blood;
+
+    bool particleSystemPlayed = false;
 
     Animator animator;
     bool shieldActive = false;
@@ -21,14 +24,18 @@ public class SwordsMan : MonoBehaviour
     void Update()
     {
         AttackBlock();
-
     }
 
     public void AttackEnemy()
     {
         
         enemy.ReduceHealth(swordDamage);
-        
+
+     
+            particleSystemPlayed = true;
+            Instantiate(blood, enemy.transform.position, Quaternion.identity);
+      
+
     }
 
     private void AttackBlock()

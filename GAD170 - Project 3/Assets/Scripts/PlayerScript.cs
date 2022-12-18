@@ -14,6 +14,10 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float runSpeed = 4f;
     public float playerSpeed;
 
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip walkSound;
+    [SerializeField] AudioClip swordSwingSound;
+    AudioSource audioSource;
 
 
     //Player Components
@@ -31,6 +35,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -141,6 +146,17 @@ public class PlayerScript : MonoBehaviour
             damagePowerUpEvent();
             Destroy(other.gameObject);
         }
+    }
+
+    //Sound Effects
+    public void PlayFootSound()
+    {
+        audioSource.PlayOneShot(walkSound);
+    }
+
+    public void PlaySwingSword()
+    {
+        audioSource.PlayOneShot(swordSwingSound);
     }
 
 }
