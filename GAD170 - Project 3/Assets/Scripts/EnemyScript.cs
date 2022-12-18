@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    [Header("Enemy Stats")]
     [SerializeField] int enemyHealth = 100;
     [SerializeField] int enemyDamage = 10;
     [SerializeField] float enemySpeed = 2f;
@@ -15,6 +16,11 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] GameObject[] droppableItems;
     bool ifItemDropped = false;
 
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip heavyDeath;
+    [SerializeField] AudioClip normalDeath;
+    AudioSource audioSource;
+
     bool scoreAdded = false;
     public ScoreHandler scoreHandler;
     GameObject player;
@@ -22,9 +28,11 @@ public class EnemyScript : MonoBehaviour
     bool ifSubscribed = false;
 
 
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -86,7 +94,7 @@ public class EnemyScript : MonoBehaviour
                 DropAnItem();
             }
 
-            Destroy(this.gameObject, 4f);
+            Destroy(this.gameObject, 4.5f);
         }
     }
 
@@ -113,6 +121,18 @@ public class EnemyScript : MonoBehaviour
     void DamageHealth()
     {
         enemyHealth /= 2;
+    }
+
+    //Sound Effects Events
+    
+    public void PlayHeavyDeath()
+    {
+        audioSource.PlayOneShot(heavyDeath);
+    }
+
+    public void PlayNormalDeath()
+    {
+        audioSource.PlayOneShot(normalDeath);
     }
 }
 

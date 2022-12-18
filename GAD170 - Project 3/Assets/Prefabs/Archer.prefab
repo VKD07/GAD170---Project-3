@@ -902,10 +902,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131596a2587bf6d41abc8dc77d2ed1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 10
+  playerHealth: 100
   walkSpeed: 2
   runSpeed: 4
   playerSpeed: 0
+  walkSound: {fileID: 0}
+  swordSwingSound: {fileID: 0}
 --- !u!114 &1170907158914620223
 MonoBehaviour:
   m_ObjectHideFlags: 0
