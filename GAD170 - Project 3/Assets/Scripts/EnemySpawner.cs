@@ -7,17 +7,13 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject [] enemies;
-
-   
     void Start()
     {
-        
         StartCoroutine(SpawnEnemies());
     }
-
     IEnumerator SpawnEnemies()
     {
-        while (true)
+        while (true) // while true then loop through the game object of array enemies and spawn the enemies with in different spawn times
         {
             for (int i = 0; i < enemies.Length; i++)
             {
@@ -27,9 +23,6 @@ public class EnemySpawner : MonoBehaviour
 
                 yield return new WaitForSeconds(randomDelayTime); 
             }
-           
         }
     }
-
-  
 }
